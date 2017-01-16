@@ -53,17 +53,16 @@ class ProjectController extends Controller
     			'end_at' => 'required|date',
     		]);
 
-    	$datas = [
-    		"client_id" => $request->client_id,
-    		"name" => $request->name,
-    		"description" => $request->description,
-    		"assign_to" => $request->assign_to,
-    		"start_at" => $request->start_at,
-    		"end_at" => $request->end_at,
-    	];
+        $projects = new Projects;
+        $projects->client_id = $request->client_id;
+        $projects->name = $request->name;
+        $projects->description = $request->description;
+        $projects->assign_to = $request->assign_to;
+        $projects->start_at = $request->start_at;
+        $projects->end_at = $request->end_at;
 
-    	if(Projects::create($datas)):
-    		return redirect('/dashboard/project')->with('status', 'Add Project Success');
+    	if($projects->save()):
+    		return redirect('/dashboard/project/'.$projects->id.'/view')->with('status', 'Add Project Success');
     	else:
     		return redirect()->back()->with('status', 'Add project Failed');
     	endif;
@@ -109,7 +108,7 @@ class ProjectController extends Controller
     public function delete(Request $request)
     {
     	if(Projects::find($request->id_delete)->delete()):
-    		return redirect('/dashboard/projects')->with('status', 'Delete Project Success');
+    		return redirect('/dashboard/project')->with('status', 'Delete Project Success');
     	else:
     		return redirect()->back()->with('status', 'Delete project Failed');
     	endif;
@@ -117,9 +116,9 @@ class ProjectController extends Controller
 
     public function view(Projects $project)
     {
-        /*$dataUserProject = $project->user_team->pluck('id');
-    	$users = User::whereNotIn('id', $dataUserProject)->get();*/
-        $users = User::all();
+        $dataUserProject = $project->user_team->pluck('id');
+    	$users = User::whereNotIn('id', $dataUserProject)->get();
+        /*$users = User::all();*/
     	return view('Projects.view',[
     			'data' => $project,
     			'users' => $users,
@@ -182,6 +181,7 @@ class ProjectController extends Controller
                 "assign_to" => 'required',
                 "start_at" => 'required|date',
                 "end_at" => 'required|date',
+                "status" => 'required',
             ]);
 
     	/*$datas = [
@@ -200,6 +200,7 @@ class ProjectController extends Controller
         $task->assign_to = $request->assign_to;
         $task->start_at = $request->start_at;
         $task->end_at = $request->end_at;
+        $task->status = $request->status;
         $task->save();
 
         if($request->file('document')!=null):

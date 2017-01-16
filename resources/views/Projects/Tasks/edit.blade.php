@@ -91,6 +91,20 @@
                             </div>
                         </div>
                         <div class="form-group">
+                            <label for="Status" class="col-sm-3 control-label">Status</label>
+                            <div class="col-sm-9">
+                                <select name="status" class="form-control">
+                                    <option value="open" @if($data->status=='open') selected @endif>Open</option>
+                                    <option value="close" @if($data->status=='close') selected @endif>Close</option>
+                                </select>
+                                @if ($errors->has('status'))
+                                    <span class="help-block">
+                                        <strong style="color: red;">{{ $errors->first('status') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="form-group">
                             <label for="File" class="col-sm-3 control-label">Add File</label>
                             <div class="col-sm-9">
                                 <input type="file" class="form-control" id="document" name="document" placeholder="File" value="{{ old('document') }}">

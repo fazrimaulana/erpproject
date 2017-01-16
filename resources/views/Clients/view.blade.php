@@ -8,6 +8,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     View Client
+                    <a href="{{ url()->previous() }}" class="btn btn-xs btn-default pull-right"><i class="fa fa-long-arrow-left"></i> Back</a>
                 </div>
 
                 <div class="panel-body">
