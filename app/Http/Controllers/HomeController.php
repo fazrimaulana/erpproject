@@ -26,8 +26,10 @@ class HomeController extends Controller
     public function index()
     {
         $projects = Projects::all();
+        /*$task = Auth::user()->task()->get();*/
         return view('home',[
                 'projects' => $projects,
+                /*'task' => $task,*/
             ]);
     }
 }

@@ -81,6 +81,26 @@
 
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
+                            <p id="captcha_img">{!! captcha_img() !!}</p>
+                            <span class="btn btn-sm btn-success" id="refresh"><i class="glyphicon glyphicon-refresh"></i></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="Captcha" class="col-md-4 control-label">Captcha</label>
+
+                            <div class="col-md-6">
+                                <input id="captcha" type="text" class="form-control" name="captcha" minlength="5" maxlength="5" required>
+                                @if ($errors->has('captcha'))
+                                    <span class="help-block">
+                                        <strong style="color: red;">{{ $errors->first('captcha') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-6 col-md-offset-4">
                                 <button type="submit" class="btn btn-primary">
                                     Register
                                 </button>
@@ -93,3 +113,14 @@
     </div>
 </div>
 @endsection
+
+@section('script')
+    <script>
+        $('#refresh').on('click', function(){
+            $.get('register', function(data){
+                /*console.log(data);*/
+                $("p#captcha_img").replaceWith(" <p id='captcha_img'>"+ data +"</p> ");
+            });
+        });
+    </script>
+@stop

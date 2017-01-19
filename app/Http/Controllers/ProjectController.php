@@ -271,6 +271,7 @@ class ProjectController extends Controller
                 "assign_to" => 'required',
                 "start_at" => 'required|date',
                 "end_at" => 'required|date',
+                "status" => 'required',
             ]);
 
         $task->project_id = $project->id;
@@ -279,6 +280,7 @@ class ProjectController extends Controller
         $task->assign_to = $request->assign_to;
         $task->start_at = $request->start_at;
         $task->end_at = $request->end_at;
+        $task->status = $request->status;
         $task->update();
 
         if($request->file('document')!=null):

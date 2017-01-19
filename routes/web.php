@@ -19,6 +19,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
+Route::get('/home/view_task/{task}', 'ProjectController@ViewTask');
 
 Route::group(['prefix' => 'dashboard'], function(){
 
