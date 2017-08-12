@@ -171,16 +171,12 @@
                     $('#start-task').html(""+data.task.start_at);
                     $('#end-task').html(""+data.task.end_at);
                     $('#description-task').html(""+data.task.description);
-
                     var dataHead = "<tr><td>Name</td><td>Action</td></tr>";
                     var dataFiles = "";
-
                     $.each(data.file_task, function(key, val){
                         /*console.log(val.name);*/
                         dataFiles += " <tr><td>"+ val.name +"</td><td><a href='"+ url + "/" + val.path +"' target='_blank'>Download</a></td></tr>";
-
                     });
-
                     $('#data-files').html("<table class='table table-bordered table-hover'>"+dataHead+dataFiles+"</table>");
                     $('#ViewTask').modal({
                         "backdrop":"static",
@@ -188,7 +184,6 @@
                     });
                 });
             });
-
 </script>
 
 @stop

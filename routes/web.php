@@ -12,8 +12,14 @@
 */
 
 Route::get('/', function () {
-    /*return view('welcome');*/
-    return view('auth.login');
+    return view('welcome');
+    /*return view('auth.login');*/
+});
+
+/*Route::post('/android', 'AndroidController@index');*/
+
+Route::get('register/test', function(){
+    return response()->json("test");
 });
 
 Auth::routes();
@@ -105,3 +111,7 @@ Route::group(['prefix' => 'dashboard'], function(){
     Route::post('/team/delete', 'TeamController@delete');
 
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index');

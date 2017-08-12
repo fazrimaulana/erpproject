@@ -1,6 +1,7 @@
 <?php
 use Illuminate\Support\Facades\Route;
-$route = Route::getCurrentRoute()->getPath();
+/*$route = Route::getCurrentRoute()->getPath();*/
+$route = "";
 ?>
 <!DOCTYPE html>
 <html lang="en">
